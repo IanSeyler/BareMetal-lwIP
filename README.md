@@ -12,6 +12,7 @@ The app will request an IP address via DHCP and display the values it received.
 
 ## Todo
 
-Fix `sys_check_timeouts();`
+- Fix `sys_check_timeouts();`
+- Clean up. Pull a zip of lwIP as needed.
 
 // EOF
