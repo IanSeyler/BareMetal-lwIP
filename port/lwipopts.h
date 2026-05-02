@@ -60,14 +60,6 @@
 /* Disable debug output unless debugging */
 #define LWIP_DEBUG                      0
 
-/*
- * TIMECOUNTER_MS_PER_TICK: milliseconds per b_system(TIMECOUNTER,...) tick.
- * BareMetal typically uses an 8Hz OS timer, so 1 tick = 125 ms.
- * If timing seems off (DHCP never completes, or timeouts fire too fast),
- * adjust this value to match the actual timer rate of your BareMetal build.
- */
-#define TIMECOUNTER_MS_PER_TICK         125
-
 /* httpd: only serve static files, no CGI/SSI needed */
 #define LWIP_HTTPD_CGI                  0
 #define LWIP_HTTPD_SSI                  0

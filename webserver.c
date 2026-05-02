@@ -80,7 +80,7 @@ int main(void) {
     /* Main polling loop */
     while (1) {
         ethernetif_input(&netif);
-     //   sys_check_timeouts();
+        sys_check_timeouts();
         check_dhcp_state();
     }
 

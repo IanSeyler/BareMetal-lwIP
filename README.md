@@ -8,12 +8,12 @@ A port of lwIP for use on the BareMetal kernel.
 
 Put the files to be hosted in `fs/`.
 
-Run `./build-app.sh`, install in a BareMetal disk image, and run it.
+Run `./build-webserver.sh` to create a web server app, copy it to a BareMetal disk image, and run it.
 
 The app will request an IP address via DHCP and display the values it received.
 
 ## Todo
 
-- Fix `sys_check_timeouts();`
+- More examples
 
 // EOF

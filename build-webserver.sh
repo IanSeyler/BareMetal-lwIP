@@ -106,7 +106,7 @@ ALL_SRCS="
   $LWIP_HTTP_SRCS
   $PORT_SRCS
   $root/libBareMetal.c
-  $root/test.c
+  $root/webserver.c
 "
 
 OBJ_FILES=""
@@ -123,14 +123,14 @@ for src in $ALL_SRCS; do
     OBJ_FILES="$OBJ_FILES $obj"
 done
 
-echo "Linking test..."
-$LD $LDFLAGS -o test $root/lib/crt0.o $OBJ_FILES -lc
+echo "Linking webserver..."
+$LD $LDFLAGS -o webserver $root/lib/crt0.o $OBJ_FILES -lc
 
-echo "Generating test.app..."
-$OBJCOPY -O binary test test.app
+echo "Generating webserver.app..."
+$OBJCOPY -O binary webserver webserver.app
 
 echo "Cleaning up..."
 rm -f *.o "$MAKEFSDATA_BIN" "$root/fsdata.c"
 
 echo ""
-echo "Build complete: test.app"
+echo "Build complete: webserver.app"
