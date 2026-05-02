@@ -1,4 +1,5 @@
 .DS_Store
-*.o
+test
 *.app
-libBareMetal*
+CFLAGS
+LDFLAGS

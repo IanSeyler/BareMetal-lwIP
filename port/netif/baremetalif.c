@@ -19,10 +19,12 @@
 #include "lwip/netif.h"
 #include "lwip/etharp.h"
 #include "netif/ethernet.h"
-#include "baremetalif.h"
+//#include "baremetalif.h"
 
+#ifdef DEBUG
 #include <string.h>
 #include <stdio.h>
+#endif
 
 #include "libBareMetal.h"
 
@@ -77,9 +79,9 @@ static err_t low_level_init(struct netif *netif) {
     netif->hwaddr_len = ETH_HWADDR_LEN;
     get_mac_address(netif->hwaddr);
 
-    printf("lwIP netif MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
-           netif->hwaddr[0], netif->hwaddr[1], netif->hwaddr[2],
-           netif->hwaddr[3], netif->hwaddr[4], netif->hwaddr[5]);
+    #ifdef DEBUG
+    printf("lwIP netif MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", netif->hwaddr[0], netif->hwaddr[1], netif->hwaddr[2], netif->hwaddr[3], netif->hwaddr[4], netif->hwaddr[5]);
+    #endif
 
     netif->mtu = NETIF_MTU;
     netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
@@ -108,20 +110,16 @@ void ethernetif_input(struct netif *netif) {
 
     if (len == 0) return;
 
-//    printf("b_net_rx: len=%lu buffer=%p\n", len, (void *)buffer);
+    #ifdef DEBUG
+    printf("b_net_rx: len=%lu buffer=%p\n", len, (void *)buffer);
 
-    //debug: print the address of the buffer pointer
-//    printf("Buffer pointer post: %p\n", buffer);
-
-    //debug: dump packet length
-//    printf("Packet received: len=%lu\n", len);
-
-//    //debug: dump packet contents
-//    printf("Packet contents: ");
-//    for (u64 i = 0; i < len; i++) {
-//        printf("%02X ", ((u8_t *)buffer)[i]);
-//    }
-//    printf("\n");
+    //debug: dump packet contents
+    printf("Packet contents: ");
+    for (u64 i = 0; i < len; i++) {
+        printf("%02X ", ((u8_t *)buffer)[i]);
+    }
+    printf("\n");
+    #endif
 
     if (len > 1514) len = 1514;
 
