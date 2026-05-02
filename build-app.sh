@@ -18,10 +18,26 @@ CC=gcc
 LD=ld
 OBJCOPY=objcopy
 
+# ---- Build makefsdata and generate fsdata.c from fs/ ----
+MAKEFSDATA_SRC=$LWIP/apps/http/makefsdata/makefsdata.c
+MAKEFSDATA_BIN=$root/makefsdata
+
+echo "Building makefsdata..."
+gcc \
+    -I "$LWIP/include" \
+    -I "$root/lwip-2.2.1/contrib/ports/unix/posixlib" \
+    -I "$root/lwip-2.2.1/contrib/ports/unix/port/include" \
+    -o "$MAKEFSDATA_BIN" "$MAKEFSDATA_SRC"
+
+echo "Generating fsdata.c from fs/..."
+(cd "$root" && "$MAKEFSDATA_BIN" fs -f:"$root/fsdata.c")
+# -------------------------------------------------------------------------
+
 CFLAGS="${CFLAGS_FOR_TARGET} -fno-stack-protector"
 CFLAGS="$CFLAGS -D_POSIX_TIMERS=1 -D_POSIX_MONOTONIC_CLOCK=1"
 CFLAGS="$CFLAGS -I $root"
 CFLAGS="$CFLAGS -I $root/include"
+CFLAGS="$CFLAGS -DHTTPD_FSDATA_FILE=\"$root/fsdata.c\""
 CFLAGS="$CFLAGS -I $LWIP/include"
 CFLAGS="$CFLAGS -I $PORT"
 
@@ -113,7 +129,7 @@ echo "Generating test.app..."
 $OBJCOPY -O binary test test.app
 
 echo "Cleaning up..."
-rm -f *.o
+rm -f *.o "$MAKEFSDATA_BIN" "$root/fsdata.c"
 
 echo ""
 echo "Build complete: test.app"
