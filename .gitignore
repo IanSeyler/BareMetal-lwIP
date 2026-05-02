@@ -3,3 +3,4 @@ test
 *.app
 CFLAGS
 LDFLAGS
+lwip-2.2.1/

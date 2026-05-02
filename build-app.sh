@@ -8,6 +8,12 @@ root=$(pwd)
 LWIP=$root/lwip-2.2.1/src
 PORT=$root/port
 
+# Check for existing lwIP directory
+if [ ! -d "$root/lwip-2.2.1/" ]; then
+    # Extract lwIP source zip
+    unzip lwip-2.2.1.zip
+fi
+
 CC=gcc
 LD=ld
 OBJCOPY=objcopy
