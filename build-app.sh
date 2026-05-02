@@ -27,9 +27,6 @@ CFLAGS="$CFLAGS -I $PORT"
 
 LDFLAGS="-T $root/app.ld -z max-page-size=0x1000 -L $root/lib"
 
-echo "$CFLAGS" > CFLAGS
-echo "$LDFLAGS" > LDFLAGS
-
 # ---- lwIP core ----
 LWIP_CORE_SRCS="
   $LWIP/core/init.c

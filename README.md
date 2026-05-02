@@ -2,7 +2,7 @@
 
 A port of lwIP for use on the BareMetal kernel.
 
-`include` contains the newLib headers. `lib` contains a pre-built newlib library and the crt0.o for linking.
+`include` contains the newLib headers. `lib` contains a pre-built newlib library and the crt0.o for linking. `lwip-22.2.1.zip` is from [here](https://download-mirror.savannah.gnu.org/releases/lwip/).
 
 ## Instructions
 
@@ -13,6 +13,5 @@ The app will request an IP address via DHCP and display the values it received.
 ## Todo
 
 - Fix `sys_check_timeouts();`
-- Clean up. Pull a zip of lwIP as needed.
 
 // EOF

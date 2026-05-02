@@ -1,6 +1,4 @@
 .DS_Store
 test
-*.app
-CFLAGS
-LDFLAGS
+test.app
 lwip-2.2.1/
