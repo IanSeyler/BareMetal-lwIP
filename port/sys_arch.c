@@ -10,13 +10,10 @@ void sys_init(void) {
 
 /*
  * Return current time in milliseconds.
- * b_system(TIMECOUNTER,0,0) returns the number of OS timer ticks since boot.
- * Multiply by TIMECOUNTER_MS_PER_TICK (default 125 for an 8Hz timer) to
- * convert to milliseconds.  Adjust in lwipopts.h if your build uses a
- * different timer rate.
+ * b_system(TIMECOUNTER,0,0) returns the number of nanoseconds since boot.
  */
 u32_t sys_now(void) {
-    return (u32_t)(b_system(TIMECOUNTER, 0, 0) * TIMECOUNTER_MS_PER_TICK);
+    return (u32_t)(b_system(TIMECOUNTER, 0, 0) / 1000000);
 }
 
 /*
