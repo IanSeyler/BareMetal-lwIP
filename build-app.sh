@@ -33,13 +33,14 @@ echo "Generating fsdata.c from fs/..."
 (cd "$root" && "$MAKEFSDATA_BIN" fs -f:"$root/fsdata.c")
 # -------------------------------------------------------------------------
 
-CFLAGS="${CFLAGS_FOR_TARGET} -fno-stack-protector"
+CFLAGS="${CFLAGS_FOR_TARGET} -fno-stack-protector -fno-pic -mcmodel=large"
 CFLAGS="$CFLAGS -D_POSIX_TIMERS=1 -D_POSIX_MONOTONIC_CLOCK=1"
 CFLAGS="$CFLAGS -I $root"
 CFLAGS="$CFLAGS -I $root/include"
 CFLAGS="$CFLAGS -DHTTPD_FSDATA_FILE=\"$root/fsdata.c\""
 CFLAGS="$CFLAGS -I $LWIP/include"
 CFLAGS="$CFLAGS -I $PORT"
+CFLAGS="$CFLAGS -O3"
 
 LDFLAGS="-T $root/app.ld -z max-page-size=0x1000 -L $root/lib"
 
