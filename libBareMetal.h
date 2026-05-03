@@ -18,7 +18,7 @@ typedef uint64_t u64;
 
 // Input/Output
 u8 b_input(void);
-void b_output(const char *str, u64 nbr);
+void b_output(const char *str, u64 len);
 
 // Network
 void b_net_tx(void *mem, u64 len, u64 iid);
